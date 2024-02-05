@@ -50,5 +50,40 @@ namespace Backend.Controllers
             }
             return Ok(persoanaDTO);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateAsync(PostPersoanaDTO p)
+        {
+            var persoanaDTO = await _service.CreatePersoanaAsync(p);
+            return Ok();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateAsync(int id, PostPersoanaDTO p)
+        {
+            var result = await _service.UpdatePersoanaAsync(id, p);
+            if (result)
+            {
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            var result = await _service.DeletePersoanaAsync(id);
+            if (result)
+            {
+                return NoContent();
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }
