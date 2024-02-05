@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(BackendContext))]
-    [Migration("20240205142242_m1")]
-    partial class m1
+    [Migration("20240205150203_m2")]
+    partial class m2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,7 +60,7 @@ namespace Backend.Migrations
                     b.Property<DateTime>("Data_crearii")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Id_persoana")
+                    b.Property<int>("PersoanaId")
                         .HasColumnType("int");
 
                     b.Property<string>("Wca_id")
@@ -69,7 +69,7 @@ namespace Backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id_persoana")
+                    b.HasIndex("PersoanaId")
                         .IsUnique();
 
                     b.ToTable("ContWCA");
@@ -86,14 +86,11 @@ namespace Backend.Migrations
                     b.Property<DateTime>("Data_nasterii")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Id_tara")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nume")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TaraId")
+                    b.Property<int>("TaraId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -105,30 +102,21 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Entities.Rezultat", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("PersoanaId")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<int>("CompetitieId")
+                        .HasColumnType("int");
 
                     b.Property<double>("Average")
                         .HasColumnType("float");
 
-                    b.Property<int?>("CompetitieId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id_competitie")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id_persoana")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("PersoanaId")
-                        .HasColumnType("int");
 
                     b.Property<int>("Pozitie")
                         .HasColumnType("int");
@@ -155,11 +143,9 @@ namespace Backend.Migrations
                     b.Property<double>("Timp5")
                         .HasColumnType("float");
 
-                    b.HasKey("Id");
+                    b.HasKey("PersoanaId", "CompetitieId");
 
                     b.HasIndex("CompetitieId");
-
-                    b.HasIndex("PersoanaId");
 
                     b.ToTable("Rezultat");
                 });
@@ -193,7 +179,7 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.Persoana", "Persoana")
                         .WithOne("ContWCA")
-                        .HasForeignKey("Backend.Entities.ContWCA", "Id_persoana")
+                        .HasForeignKey("Backend.Entities.ContWCA", "PersoanaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -204,7 +190,9 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.Tara", "Tara")
                         .WithMany("Persoane")
-                        .HasForeignKey("TaraId");
+                        .HasForeignKey("TaraId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Tara");
                 });
@@ -213,11 +201,15 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Entities.Competitie", "Competitie")
                         .WithMany("Rezultate")
-                        .HasForeignKey("CompetitieId");
+                        .HasForeignKey("CompetitieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Backend.Entities.Persoana", "Persoana")
                         .WithMany("Rezultate")
-                        .HasForeignKey("PersoanaId");
+                        .HasForeignKey("PersoanaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Competitie");
 

@@ -1,4 +1,7 @@
 using Backend.ContextModels;
+using Backend.Helpers;
+using Backend.Repositories;
+using Backend.Services;
 //using Backend.Repositories;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +25,13 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<BackendContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("backend")));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-//builder.Services.AddScoped<...>();
+//builder.Services.AddScoped<IPersoanaRepository, PersoanaRepository>();
+//builder.Services.AddScoped<IPersoanaService, PersoanaService>();
+builder.Services.AddRepositories();
+builder.Services.AddServices();
+
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 //builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

@@ -10,7 +10,7 @@ namespace Backend.Entities
         [JsonIgnore]
         public ICollection<Rezultat> Rezultate { get; }
         public Tara? Tara { get; set; }
-        public int Id_tara { get; set; }
+        public int TaraId { get; set; }
         public ContWCA ContWCA { get; set; }
 
         
