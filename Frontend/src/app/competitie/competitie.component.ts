@@ -10,10 +10,13 @@ export class CompetitieComponent implements OnInit {
   competities: any[] = [];
 
   constructor(private competitieService: CompetitieService) { }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
-  ngOnInit() {
+  /*ngOnInit() {
     this.competitieService.getCompetitie().subscribe(data => {
       this.competities = data;
     });
-  }
+  }*/
 }

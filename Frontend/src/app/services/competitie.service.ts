@@ -10,7 +10,7 @@ export class CompetitieService {
 
   constructor(private http: HttpClient) { }
 
-  getCompetities(): Observable<any[]> {
+  getCompetitie(): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl);
   }
 }
