@@ -8,6 +8,7 @@ namespace Backend.Helpers
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddTransient<IPersoanaRepository, PersoanaRepository>();
+            services.AddTransient<ICompetitieRepository, CompetitieRepository>();
 
             return services;
         }
@@ -15,6 +16,7 @@ namespace Backend.Helpers
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddTransient<IPersoanaService, PersoanaService>();
+            services.AddTransient<ICompetitieService, CompetitieService>();
 
             return services;
         }

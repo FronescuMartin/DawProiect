@@ -1,14 +1,14 @@
-﻿using System.Drawing;
+﻿using Backend.Entities;
 using System.Text.Json.Serialization;
 
-namespace Backend.Entities
+namespace Backend.Models
 {
-    public class Competitie
+    public class GetCompetitieDTO
     {
         public int Id { get; set; }
         public string Nume { get; set; }
         public string Oras { get; set; }
         public DateTime Data { get; set; }
-        public ICollection<Rezultat> Rezultate { get; }
+        public List<GetRezultatDTO> Rezultate { get; set; }
     }
 }

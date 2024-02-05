@@ -54,7 +54,7 @@ namespace Backend.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAsync(PostPersoanaDTO p)
         {
-            var persoanaDTO = await _service.CreatePersoanaAsync(p);
+            await _service.CreatePersoanaAsync(p);
             return Ok();
         }
 
