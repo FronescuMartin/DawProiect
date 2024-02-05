@@ -3323,11 +3323,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\documents\\ASP\\Proiect\\Backend\\Backend\\Backend.csproj",
+      "projectUniqueName": "D:\\documents\\ASP\\DawProiect\\Backend\\Backend\\Backend.csproj",
       "projectName": "Backend",
-      "projectPath": "D:\\documents\\ASP\\Proiect\\Backend\\Backend\\Backend.csproj",
+      "projectPath": "D:\\documents\\ASP\\DawProiect\\Backend\\Backend\\Backend.csproj",
       "packagesPath": "C:\\Users\\Martin\\.nuget\\packages\\",
-      "outputPath": "D:\\documents\\ASP\\Proiect\\Backend\\Backend\\obj\\",
+      "outputPath": "D:\\documents\\ASP\\DawProiect\\Backend\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Martin\\AppData\\Roaming\\NuGet\\NuGet.Config",
