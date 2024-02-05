@@ -9,6 +9,7 @@ namespace Backend.Helpers
         {
             services.AddTransient<IPersoanaRepository, PersoanaRepository>();
             services.AddTransient<ICompetitieRepository, CompetitieRepository>();
+            services.AddTransient<IRezultatRepository, RezultatRepository>();
 
             return services;
         }
@@ -17,6 +18,7 @@ namespace Backend.Helpers
         {
             services.AddTransient<IPersoanaService, PersoanaService>();
             services.AddTransient<ICompetitieService, CompetitieService>();
+            services.AddTransient<IRezultatService, RezultatService>();
 
             return services;
         }
