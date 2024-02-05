@@ -1,0 +1,9 @@
+<!-- src/app/competities/competities.component.html -->
+<div *ngFor="let competitie of competities">
+    <h2>{{ competitie.nume }} ({{ competitie.oras }}, {{ competitie.data }})</h2>
+    <ul>
+      <li *ngFor="let rezultat of competitie.rezultate">
+        Proba: {{ rezultat.proba }}, Pozitie: {{ rezultat.pozitie }}, Average: {{ rezultat.average }}
+      </li>
+    </ul>
+  </div>
