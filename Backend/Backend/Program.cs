@@ -1,3 +1,4 @@
+using Backend.Authorization;
 using Backend.ContextModels;
 using Backend.Helpers;
 using Backend.Repositories;
@@ -21,6 +22,10 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
 });
+
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+builder.Services.AddScoped<IJwtUtils, JwtUtils>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddDbContext<BackendContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("backend")));
@@ -54,6 +59,8 @@ app.UseRouting();
 app.UseCors("corsapp");
 
 app.UseAuthorization();
+
+app.UseMiddleware<JwtMiddleware>();
 
 app.MapControllers();
 
